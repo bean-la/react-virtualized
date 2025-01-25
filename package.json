@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "build:types": "flow-copy-source --ignore \"**/*.{jest,e2e,ssr,example}.js\" source/WindowScroller dist/es/WindowScroller && flow-copy-source --ignore \"**/*.{jest,e2e,ssr,example}.js\" source/AutoSizer dist/es/AutoSizer",
-    "build": "pnpm run build:commonjs && pnpm run build:css && pnpm run build:es && pnpm run build:demo && pnpm run build:umd",
+    "build": "pnpm run build:commonjs && pnpm run build:css && pnpm run build:es && pnpm run build:umd",
     "build:commonjs": "pnpm run clean:commonjs && cross-env NODE_ENV=commonjs babel source --out-dir dist/commonjs",
     "build:css": "postcss source/styles.css -o styles.css --use autoprefixer",
     "build:demo": "pnpm run clean:demo && cross-env NODE_ENV=production webpack --config webpack.config.demo.js -p --bail",
@@ -121,9 +121,6 @@
     "puppeteer": "^2.0.0",
     "react": "^17.0.1",
     "react-codemirror": "^1.0.0",
-    "react-dom": "^17.0.1",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
     "react-test-renderer": "^17.0.1",
     "rimraf": "^6.0.1",
     "rollup": "^1.26.5",
