@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import styles from './List.example.css';
 import AutoSizer from '../AutoSizer';
@@ -10,7 +10,7 @@ import {
   ContentBoxHeader,
   ContentBoxParagraph,
 } from '../demo/ContentBox';
-import {LabeledInput, InputRow} from '../demo/LabeledInput';
+import { LabeledInput, InputRow } from '../demo/LabeledInput';
 
 export default class ListExample extends React.PureComponent {
   static contextTypes = {
@@ -70,7 +70,7 @@ export default class ListExample extends React.PureComponent {
               className={styles.checkbox}
               type="checkbox"
               onChange={event =>
-                this.setState({useDynamicRowHeight: event.target.checked})
+                this.setState({ useDynamicRowHeight: event.target.checked })
               }
             />
             Use dynamic row heights?
@@ -141,7 +141,7 @@ export default class ListExample extends React.PureComponent {
 
         <div>
           <AutoSizer disableHeight>
-            {({width}) => (
+            {({ width }) => (
               <List
                 ref="List"
                 className={styles.List}
@@ -164,12 +164,12 @@ export default class ListExample extends React.PureComponent {
   }
 
   _getDatum(index) {
-    const {list} = this.context;
+    const { list } = this.context;
 
     return list.get(index % list.size);
   }
 
-  _getRowHeight({index}) {
+  _getRowHeight({ index }) {
     return this._getDatum(index).size;
   }
 
@@ -180,11 +180,11 @@ export default class ListExample extends React.PureComponent {
   _onRowCountChange(event) {
     const rowCount = parseInt(event.target.value, 10) || 0;
 
-    this.setState({rowCount});
+    this.setState({ rowCount });
   }
 
   _onScrollToRowChange(event) {
-    const {rowCount} = this.state;
+    const { rowCount } = this.state;
     let scrollToIndex = Math.min(
       rowCount - 1,
       parseInt(event.target.value, 10),
@@ -194,11 +194,11 @@ export default class ListExample extends React.PureComponent {
       scrollToIndex = undefined;
     }
 
-    this.setState({scrollToIndex});
+    this.setState({ scrollToIndex });
   }
 
-  _rowRenderer({index, isScrolling, key, style}) {
-    const {showScrollingPlaceholder, useDynamicRowHeight} = this.state;
+  _rowRenderer({ index, isScrolling, key, style }) {
+    const { showScrollingPlaceholder, useDynamicRowHeight } = this.state;
 
     if (showScrollingPlaceholder && isScrolling) {
       return (

@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   ContentBox,
@@ -39,8 +39,8 @@ export default class CellMeasurerExample extends React.PureComponent {
   }
 
   render() {
-    const {list} = this.context;
-    const {currentTab} = this.state;
+    const { list } = this.context;
+    const { currentTab } = this.state;
 
     const buttonProps = {
       currentTab,
@@ -63,8 +63,8 @@ export default class CellMeasurerExample extends React.PureComponent {
         </ContentBoxParagraph>
 
         <AutoSizer disableHeight>
-          {({width}) => (
-            <div style={{width}}>
+          {({ width }) => (
+            <div style={{ width }}>
               <div>
                 <strong>Grid</strong>:
                 <Tab id={0} {...buttonProps}>
@@ -107,7 +107,7 @@ export default class CellMeasurerExample extends React.PureComponent {
   }
 }
 
-function getClassName({columnIndex, rowIndex}) {
+function getClassName({ columnIndex, rowIndex }) {
   const rowClass = rowIndex % 2 === 0 ? styles.evenRow : styles.oddRow;
 
   return clsx(rowClass, styles.cell, {
@@ -115,7 +115,7 @@ function getClassName({columnIndex, rowIndex}) {
   });
 }
 
-function getContent({index, datum, long = true}) {
+function getContent({ index, datum, long = true }) {
   switch (index % 3) {
     case 0:
       return datum.color;
@@ -126,7 +126,7 @@ function getContent({index, datum, long = true}) {
   }
 }
 
-function Tab({children, currentTab, id, onClick}) {
+function Tab({ children, currentTab, id, onClick }) {
   const classNames = clsx(styles.Tab, {
     [styles.ActiveTab]: currentTab === id,
   });

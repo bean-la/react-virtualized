@@ -2,14 +2,14 @@
 
 import clsx from 'clsx';
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
   ContentBoxParagraph,
 } from '../demo/ContentBox';
-import {LabeledInput, InputRow} from '../demo/LabeledInput';
+import { LabeledInput, InputRow } from '../demo/LabeledInput';
 import WindowScroller from './WindowScroller';
 import List from '../List';
 import AutoSizer from '../AutoSizer';
@@ -39,8 +39,8 @@ export default class WindowScrollerExample extends React.PureComponent<
   _windowScroller: ?WindowScroller;
 
   render() {
-    const {customElement, isScrollingCustomElement, list} = this.context;
-    const {scrollToIndex, showHeaderText} = this.state;
+    const { customElement, isScrollingCustomElement, list } = this.context;
+    const { scrollToIndex, showHeaderText } = this.state;
 
     return (
       <ContentBox>
@@ -89,10 +89,10 @@ export default class WindowScrollerExample extends React.PureComponent<
         <WindowScroller
           ref={this._setRef}
           scrollElement={isScrollingCustomElement ? customElement : window}>
-          {({height, isScrolling, registerChild, onChildScroll, scrollTop}) => (
+          {({ height, isScrolling, registerChild, onChildScroll, scrollTop }) => (
             <div className={styles.WindowScrollerWrapper}>
               <AutoSizer disableHeight>
-                {({width}) => (
+                {({ width }) => (
                   <div ref={registerChild}>
                     <List
                       ref={el => {
@@ -122,7 +122,7 @@ export default class WindowScrollerExample extends React.PureComponent<
   }
 
   _hideHeader = () => {
-    const {showHeaderText} = this.state;
+    const { showHeaderText } = this.state;
 
     this.setState(
       {
@@ -136,8 +136,8 @@ export default class WindowScrollerExample extends React.PureComponent<
     );
   };
 
-  _rowRenderer = ({index, isScrolling, isVisible, key, style}) => {
-    const {list} = this.context;
+  _rowRenderer = ({ index, isScrolling, isVisible, key, style }) => {
+    const { list } = this.context;
     const row = list.get(index);
     const className = clsx(styles.row, {
       [styles.rowScrolling]: isScrolling,
@@ -160,7 +160,7 @@ export default class WindowScrollerExample extends React.PureComponent<
   };
 
   _onScrollToRowChange = event => {
-    const {list} = this.context;
+    const { list } = this.context;
     let scrollToIndex = Math.min(
       list.size - 1,
       parseInt(event.target.value, 10),
@@ -171,7 +171,7 @@ export default class WindowScrollerExample extends React.PureComponent<
     }
 
     setTimeout(() => {
-      this.setState({scrollToIndex});
+      this.setState({ scrollToIndex });
     }, 0);
   };
 }

@@ -1,13 +1,13 @@
 /** @flow */
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
   ContentBoxParagraph,
 } from '../demo/ContentBox';
-import {LabeledInput, InputRow} from '../demo/LabeledInput';
+import { LabeledInput, InputRow } from '../demo/LabeledInput';
 import AutoSizer from '../AutoSizer';
 import MultiGrid from './MultiGrid';
 import styles from './MultiGrid.example.css';
@@ -84,7 +84,7 @@ export default class MultiGridExample extends React.PureComponent {
         </InputRow>
 
         <AutoSizer disableHeight>
-          {({width}) => (
+          {({ width }) => (
             <MultiGrid
               {...this.state}
               cellRenderer={this._cellRenderer}
@@ -109,7 +109,7 @@ export default class MultiGridExample extends React.PureComponent {
     );
   }
 
-  _cellRenderer({columnIndex, key, rowIndex, style}) {
+  _cellRenderer({ columnIndex, key, rowIndex, style }) {
     return (
       <div className={styles.Cell} key={key} style={style}>
         {columnIndex}, {rowIndex}

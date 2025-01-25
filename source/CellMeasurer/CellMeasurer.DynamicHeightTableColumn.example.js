@@ -1,9 +1,9 @@
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import CellMeasurer from './CellMeasurer';
 import CellMeasurerCache from './CellMeasurerCache';
-import {Column, Table} from '../Table';
+import { Column, Table } from '../Table';
 import styles from './CellMeasurer.example.css';
 
 export default class DynamicHeightTableColumn extends React.PureComponent {
@@ -20,7 +20,7 @@ export default class DynamicHeightTableColumn extends React.PureComponent {
   _lastRenderedWidth = this.props.width;
 
   render() {
-    const {width} = this.props;
+    const { width } = this.props;
 
     if (this._lastRenderedWidth !== this.props.width) {
       this._lastRenderedWidth = this.props.width;
@@ -60,8 +60,8 @@ export default class DynamicHeightTableColumn extends React.PureComponent {
     );
   }
 
-  _columnCellRenderer = ({dataKey, parent, rowIndex}) => {
-    const {list} = this.props;
+  _columnCellRenderer = ({ dataKey, parent, rowIndex }) => {
+    const { list } = this.props;
 
     const datum = list.get(rowIndex % list.size);
     const content = rowIndex % 5 === 0 ? '' : datum.randomLong;
@@ -84,8 +84,8 @@ export default class DynamicHeightTableColumn extends React.PureComponent {
     );
   };
 
-  _rowGetter = ({index}) => {
-    const {list} = this.props;
+  _rowGetter = ({ index }) => {
+    const { list } = this.props;
 
     return list.get(index % list.size);
   };

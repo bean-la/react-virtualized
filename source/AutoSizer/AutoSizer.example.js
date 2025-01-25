@@ -1,7 +1,7 @@
 /** @flow */
 
-import {List as ImmutableList} from 'immutable';
-import PropTypes from 'prop-types';
+import { List as ImmutableList } from 'immutable';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   ContentBox,
@@ -9,7 +9,7 @@ import {
   ContentBoxParagraph,
 } from '../demo/ContentBox';
 import AutoSizer from './AutoSizer';
-import List, {type RowRendererParams} from '../List';
+import List, { type RowRendererParams } from '../List';
 import styles from './AutoSizer.example.css';
 
 type State = {
@@ -26,8 +26,8 @@ export default class AutoSizerExample extends React.PureComponent<{}, State> {
   };
 
   render() {
-    const {list} = this.context;
-    const {hideDescription} = this.state;
+    const { list } = this.context;
+    const { hideDescription } = this.state;
 
     return (
       <ContentBox
@@ -49,7 +49,7 @@ export default class AutoSizerExample extends React.PureComponent<{}, State> {
               type="checkbox"
               checked={hideDescription}
               onChange={event =>
-                this.setState({hideDescription: event.target.checked})
+                this.setState({ hideDescription: event.target.checked })
               }
             />
             Hide description (to show resize)?
@@ -74,7 +74,7 @@ export default class AutoSizerExample extends React.PureComponent<{}, State> {
 
         <div className={styles.AutoSizerWrapper}>
           <AutoSizer>
-            {({width, height}) => (
+            {({ width, height }) => (
               <List
                 className={styles.List}
                 height={height}
@@ -90,8 +90,8 @@ export default class AutoSizerExample extends React.PureComponent<{}, State> {
     );
   }
 
-  _rowRenderer = ({index, key, style}: RowRendererParams) => {
-    const {list} = this.context;
+  _rowRenderer = ({ index, key, style }: RowRendererParams) => {
+    const { list } = this.context;
     const row = list.get(index);
 
     return (

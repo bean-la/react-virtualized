@@ -1,12 +1,12 @@
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import SortDirection from './SortDirection';
 
 /**
  * Displayed beside a header to indicate that a Table is currently sorted by this column.
  */
-export default function SortIndicator({sortDirection}) {
+export default function SortIndicator({ sortDirection }) {
   const classNames = clsx('ReactVirtualized__Table__sortableHeaderIcon', {
     'ReactVirtualized__Table__sortableHeaderIcon--ASC':
       sortDirection === SortDirection.ASC,

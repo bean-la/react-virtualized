@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import CellMeasurer from './CellMeasurer';
 import CellMeasurerCache from './CellMeasurerCache';
@@ -26,7 +26,7 @@ export default class DynamicWidthGrid extends React.PureComponent {
   }
 
   render() {
-    const {width} = this.props;
+    const { width } = this.props;
 
     return (
       <Grid
@@ -45,12 +45,12 @@ export default class DynamicWidthGrid extends React.PureComponent {
     );
   }
 
-  _cellRenderer({columnIndex, key, parent, rowIndex, style}) {
-    const {getClassName, getContent, list} = this.props;
+  _cellRenderer({ columnIndex, key, parent, rowIndex, style }) {
+    const { getClassName, getContent, list } = this.props;
 
     const datum = list.get((rowIndex + columnIndex) % list.size);
-    const classNames = getClassName({columnIndex, rowIndex});
-    const content = getContent({index: columnIndex, datum, long: false});
+    const classNames = getClassName({ columnIndex, rowIndex });
+    const content = getContent({ index: columnIndex, datum, long: false });
 
     return (
       <CellMeasurer

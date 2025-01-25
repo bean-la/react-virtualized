@@ -1,6 +1,6 @@
 /** @flow */
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import createCallbackMemoizer from '../utils/createCallbackMemoizer';
 
 /**
@@ -78,7 +78,7 @@ export default class InfiniteLoader extends React.PureComponent {
   }
 
   render() {
-    const {children} = this.props;
+    const { children } = this.props;
 
     return children({
       onRowsRendered: this._onRowsRendered,
@@ -87,7 +87,7 @@ export default class InfiniteLoader extends React.PureComponent {
   }
 
   _loadUnloadedRanges(unloadedRanges) {
-    const {loadMoreRows} = this.props;
+    const { loadMoreRows } = this.props;
 
     unloadedRanges.forEach(unloadedRange => {
       let promise = loadMoreRows(unloadedRange);
@@ -115,7 +115,7 @@ export default class InfiniteLoader extends React.PureComponent {
     });
   }
 
-  _onRowsRendered({startIndex, stopIndex}) {
+  _onRowsRendered({ startIndex, stopIndex }) {
     this._lastRenderedStartIndex = startIndex;
     this._lastRenderedStopIndex = stopIndex;
 
@@ -123,7 +123,7 @@ export default class InfiniteLoader extends React.PureComponent {
   }
 
   _doStuff(startIndex, stopIndex) {
-    const {isRowLoaded, minimumBatchSize, rowCount, threshold} = this.props;
+    const { isRowLoaded, minimumBatchSize, rowCount, threshold } = this.props;
 
     const unloadedRanges = scanForUnloadedRanges({
       isRowLoaded,
@@ -135,7 +135,7 @@ export default class InfiniteLoader extends React.PureComponent {
 
     // For memoize comparison
     const squashedUnloadedRanges = [].concat(
-      ...unloadedRanges.map(({startIndex, stopIndex}) => [
+      ...unloadedRanges.map(({ startIndex, stopIndex }) => [
         startIndex,
         stopIndex,
       ]),
@@ -145,7 +145,7 @@ export default class InfiniteLoader extends React.PureComponent {
       callback: () => {
         this._loadUnloadedRanges(unloadedRanges);
       },
-      indices: {squashedUnloadedRanges},
+      indices: { squashedUnloadedRanges },
     });
   }
 
@@ -184,7 +184,7 @@ export function scanForUnloadedRanges({
   let rangeStopIndex = null;
 
   for (let index = startIndex; index <= stopIndex; index++) {
-    let loaded = isRowLoaded({index});
+    let loaded = isRowLoaded({ index });
 
     if (!loaded) {
       rangeStopIndex = index;
@@ -210,7 +210,7 @@ export function scanForUnloadedRanges({
     );
 
     for (let index = rangeStopIndex + 1; index <= potentialStopIndex; index++) {
-      if (!isRowLoaded({index})) {
+      if (!isRowLoaded({ index })) {
         rangeStopIndex = index;
       } else {
         break;
@@ -230,12 +230,12 @@ export function scanForUnloadedRanges({
 
     while (
       firstUnloadedRange.stopIndex - firstUnloadedRange.startIndex + 1 <
-        minimumBatchSize &&
+      minimumBatchSize &&
       firstUnloadedRange.startIndex > 0
     ) {
       let index = firstUnloadedRange.startIndex - 1;
 
-      if (!isRowLoaded({index})) {
+      if (!isRowLoaded({ index })) {
         firstUnloadedRange.startIndex = index;
       } else {
         break;

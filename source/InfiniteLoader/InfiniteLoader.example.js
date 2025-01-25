@@ -1,6 +1,6 @@
 /** @flow */
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import {
   ContentBox,
   ContentBoxHeader,
@@ -44,8 +44,8 @@ export default class InfiniteLoaderExample extends React.PureComponent {
   }
 
   render() {
-    const {list} = this.context;
-    const {loadedRowCount, loadingRowCount} = this.state;
+    const { list } = this.context;
+    const { loadedRowCount, loadingRowCount } = this.state;
 
     return (
       <ContentBox>
@@ -77,9 +77,9 @@ export default class InfiniteLoaderExample extends React.PureComponent {
           isRowLoaded={this._isRowLoaded}
           loadMoreRows={this._loadMoreRows}
           rowCount={list.size}>
-          {({onRowsRendered, registerChild}) => (
+          {({ onRowsRendered, registerChild }) => (
             <AutoSizer disableHeight>
-              {({width}) => (
+              {({ width }) => (
                 <List
                   ref={registerChild}
                   className={styles.List}
@@ -106,13 +106,13 @@ export default class InfiniteLoaderExample extends React.PureComponent {
     });
   }
 
-  _isRowLoaded({index}) {
-    const {loadedRowsMap} = this.state;
+  _isRowLoaded({ index }) {
+    const { loadedRowsMap } = this.state;
     return !!loadedRowsMap[index]; // STATUS_LOADING or STATUS_LOADED
   }
 
-  _loadMoreRows({startIndex, stopIndex}) {
-    const {loadedRowsMap, loadingRowCount} = this.state;
+  _loadMoreRows({ startIndex, stopIndex }) {
+    const { loadedRowsMap, loadingRowCount } = this.state;
     const increment = stopIndex - startIndex + 1;
 
     for (var i = startIndex; i <= stopIndex; i++) {
@@ -124,7 +124,7 @@ export default class InfiniteLoaderExample extends React.PureComponent {
     });
 
     const timeoutId = setTimeout(() => {
-      const {loadedRowCount, loadingRowCount} = this.state;
+      const { loadedRowCount, loadingRowCount } = this.state;
 
       delete this._timeoutIdMap[timeoutId];
 
@@ -149,9 +149,9 @@ export default class InfiniteLoaderExample extends React.PureComponent {
     });
   }
 
-  _rowRenderer({index, key, style}) {
-    const {list} = this.context;
-    const {loadedRowsMap} = this.state;
+  _rowRenderer({ index, key, style }) {
+    const { list } = this.context;
+    const { loadedRowsMap } = this.state;
 
     const row = list.get(index);
     let content;
@@ -160,7 +160,7 @@ export default class InfiniteLoaderExample extends React.PureComponent {
       content = row.name;
     } else {
       content = (
-        <div className={styles.placeholder} style={{width: row.size}} />
+        <div className={styles.placeholder} style={{ width: row.size }} />
       );
     }
 

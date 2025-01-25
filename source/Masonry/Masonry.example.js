@@ -1,14 +1,14 @@
 /** @flow */
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
   ContentBoxParagraph,
 } from '../demo/ContentBox';
-import {LabeledInput, InputRow} from '../demo/LabeledInput';
-import {CellMeasurer, CellMeasurerCache} from '../CellMeasurer';
+import { LabeledInput, InputRow } from '../demo/LabeledInput';
+import { CellMeasurer, CellMeasurerCache } from '../CellMeasurer';
 import AutoSizer from '../AutoSizer';
 import WindowScroller from '../WindowScroller';
 import createCellPositioner from './createCellPositioner';
@@ -64,7 +64,7 @@ export default class GridExample extends React.PureComponent {
         </WindowScroller>
       );
     } else {
-      child = this._renderAutoSizer({height});
+      child = this._renderAutoSizer({ height });
     }
 
     return (
@@ -168,14 +168,14 @@ export default class GridExample extends React.PureComponent {
   }
 
   _calculateColumnCount() {
-    const {columnWidth, gutterSize} = this.state;
+    const { columnWidth, gutterSize } = this.state;
 
     this._columnCount = Math.floor(this._width / (columnWidth + gutterSize));
   }
 
-  _cellRenderer({index, key, parent, style}) {
-    const {list} = this.context;
-    const {columnWidth} = this.state;
+  _cellRenderer({ index, key, parent, style }) {
+    const { list } = this.context;
+    const { columnWidth } = this.state;
 
     const datum = list.get(index % list.size);
 
@@ -210,7 +210,7 @@ export default class GridExample extends React.PureComponent {
 
   _initCellPositioner() {
     if (typeof this._cellPositioner === 'undefined') {
-      const {columnWidth, gutterSize} = this.state;
+      const { columnWidth, gutterSize } = this.state;
 
       this._cellPositioner = createCellPositioner({
         cellMeasurerCache: this._cache,
@@ -221,7 +221,7 @@ export default class GridExample extends React.PureComponent {
     }
   }
 
-  _onResize({width}) {
+  _onResize({ width }) {
     this._width = width;
 
     this._calculateColumnCount();
@@ -229,11 +229,11 @@ export default class GridExample extends React.PureComponent {
     this._masonry.recomputeCellPositions();
   }
 
-  _renderAutoSizer({height, scrollTop}) {
+  _renderAutoSizer({ height, scrollTop }) {
     this._height = height;
     this._scrollTop = scrollTop;
 
-    const {overscanByPixels} = this.state;
+    const { overscanByPixels } = this.state;
 
     return (
       <AutoSizer
@@ -247,13 +247,13 @@ export default class GridExample extends React.PureComponent {
     );
   }
 
-  _renderMasonry({width}) {
+  _renderMasonry({ width }) {
     this._width = width;
 
     this._calculateColumnCount();
     this._initCellPositioner();
 
-    const {height, overscanByPixels, windowScrollerEnabled} = this.state;
+    const { height, overscanByPixels, windowScrollerEnabled } = this.state;
 
     return (
       <Masonry
@@ -275,7 +275,7 @@ export default class GridExample extends React.PureComponent {
   _resetList = () => {
     const ROW_HEIGHTS = [25, 50, 75, 100];
 
-    const {list} = this.context;
+    const { list } = this.context;
     list.forEach(datum => {
       datum.size = ROW_HEIGHTS[Math.floor(Math.random() * ROW_HEIGHTS.length)];
     });
@@ -286,7 +286,7 @@ export default class GridExample extends React.PureComponent {
   };
 
   _resetCellPositioner() {
-    const {columnWidth, gutterSize} = this.state;
+    const { columnWidth, gutterSize } = this.state;
 
     this._cellPositioner.reset({
       columnCount: this._columnCount,

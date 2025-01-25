@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
 /**
@@ -30,7 +30,7 @@ export default class ScrollSync extends React.PureComponent {
   }
 
   render() {
-    const {children} = this.props;
+    const { children } = this.props;
     const {
       clientHeight,
       clientWidth,

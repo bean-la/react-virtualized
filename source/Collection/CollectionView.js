@@ -1,8 +1,8 @@
 /** @flow */
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import * as  PropTypes from 'prop-types';
 import * as React from 'react';
-import {polyfill} from 'react-lifecycles-compat';
+import { polyfill } from 'react-lifecycles-compat';
 import createCallbackMemoizer from '../utils/createCallbackMemoizer';
 import getScrollbarSize from 'dom-helpers/scrollbarSize';
 
@@ -216,7 +216,7 @@ class CollectionView extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {cellLayoutManager, scrollLeft, scrollToCell, scrollTop} = this.props;
+    const { cellLayoutManager, scrollLeft, scrollToCell, scrollTop } = this.props;
 
     // If this component was first rendered server-side, scrollbar size will be undefined.
     // In that event we need to remeasure.
@@ -229,7 +229,7 @@ class CollectionView extends React.PureComponent {
     if (scrollToCell >= 0) {
       this._updateScrollPositionForScrollToCell();
     } else if (scrollLeft >= 0 || scrollTop >= 0) {
-      this._setScrollPosition({scrollLeft, scrollTop});
+      this._setScrollPosition({ scrollLeft, scrollTop });
     }
 
     // Update onSectionRendered callback.
@@ -250,8 +250,8 @@ class CollectionView extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const {height, scrollToAlignment, scrollToCell, width} = this.props;
-    const {scrollLeft, scrollPositionChangeReason, scrollTop} = this.state;
+    const { height, scrollToAlignment, scrollToCell, width } = this.props;
+    const { scrollLeft, scrollPositionChangeReason, scrollTop } = this.state;
 
     // Make sure requested changes to :scrollLeft or :scrollTop get applied.
     // Assigning to scrollLeft/scrollTop tells the browser to interrupt any running scroll animations,
@@ -312,7 +312,7 @@ class CollectionView extends React.PureComponent {
       width,
     } = this.props;
 
-    const {isScrolling, scrollLeft, scrollTop} = this.state;
+    const { isScrolling, scrollLeft, scrollTop } = this.state;
 
     // Memoization reset
     if (
@@ -347,12 +347,12 @@ class CollectionView extends React.PureComponent {
     const childrenToDisplay =
       height > 0 && width > 0
         ? cellLayoutManager.cellRenderers({
-            height: bottom - top,
-            isScrolling,
-            width: right - left,
-            x: left,
-            y: top,
-          })
+          height: bottom - top,
+          isScrolling,
+          width: right - left,
+          x: left,
+          y: top,
+        })
         : [];
 
     const collectionStyle = {
@@ -428,7 +428,7 @@ class CollectionView extends React.PureComponent {
     }
 
     this._disablePointerEventsTimeoutId = setTimeout(() => {
-      const {isScrollingChange} = this.props;
+      const { isScrollingChange } = this.props;
 
       isScrollingChange(false);
 
@@ -440,7 +440,7 @@ class CollectionView extends React.PureComponent {
   }
 
   _invokeOnSectionRenderedHelper = () => {
-    const {cellLayoutManager, onSectionRendered} = this.props;
+    const { cellLayoutManager, onSectionRendered } = this.props;
 
     this._onSectionRenderedMemoizer({
       callback: onSectionRendered,
@@ -450,10 +450,10 @@ class CollectionView extends React.PureComponent {
     });
   };
 
-  _invokeOnScrollMemoizer({scrollLeft, scrollTop, totalHeight, totalWidth}) {
+  _invokeOnScrollMemoizer({ scrollLeft, scrollTop, totalHeight, totalWidth }) {
     this._onScrollMemoizer({
-      callback: ({scrollLeft, scrollTop}) => {
-        const {height, onScroll, width} = this.props;
+      callback: ({ scrollLeft, scrollTop }) => {
+        const { height, onScroll, width } = this.props;
 
         onScroll({
           clientHeight: height,
@@ -475,7 +475,7 @@ class CollectionView extends React.PureComponent {
     this._scrollingContainer = ref;
   };
 
-  _setScrollPosition({scrollLeft, scrollTop}) {
+  _setScrollPosition({ scrollLeft, scrollTop }) {
     const newState = {
       scrollPositionChangeReason: SCROLL_POSITION_CHANGE_REASONS.REQUESTED,
     };
@@ -504,7 +504,7 @@ class CollectionView extends React.PureComponent {
       scrollToCell,
       width,
     } = this.props;
-    const {scrollLeft, scrollTop} = this.state;
+    const { scrollLeft, scrollTop } = this.state;
 
     if (scrollToCell >= 0) {
       const scrollPosition = cellLayoutManager.getScrollPositionForCell({
@@ -540,7 +540,7 @@ class CollectionView extends React.PureComponent {
     // Gradually converging on a scrollTop that is within the bounds of the new, smaller height.
     // This causes a series of rapid renders that is slow for long lists.
     // We can avoid that by doing some simple bounds checking to ensure that scrollTop never exceeds the total height.
-    const {cellLayoutManager, height, isScrollingChange, width} = this.props;
+    const { cellLayoutManager, height, isScrollingChange, width } = this.props;
     const scrollbarSize = this._scrollbarSize;
     const {
       height: totalHeight,

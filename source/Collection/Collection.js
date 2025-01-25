@@ -1,10 +1,10 @@
 /** @flow */
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import CollectionView from './CollectionView';
 import calculateSizeAndPositionData from './utils/calculateSizeAndPositionData';
 import getUpdatedOffsetForIndex from '../utils/getUpdatedOffsetForIndex';
-import type {ScrollPosition, SizeInfo} from './types';
+import type { ScrollPosition, SizeInfo } from './types';
 
 /**
  * Renders scattered or non-linear data.
@@ -80,7 +80,7 @@ export default class Collection extends React.PureComponent {
   /** React lifecycle methods */
 
   render() {
-    const {...props} = this.props;
+    const { ...props } = this.props;
 
     return (
       <CollectionView
@@ -95,7 +95,7 @@ export default class Collection extends React.PureComponent {
   /** CellLayoutManager interface */
 
   calculateSizeAndPositionData() {
-    const {cellCount, cellSizeAndPositionGetter, sectionSize} = this.props;
+    const { cellCount, cellSizeAndPositionGetter, sectionSize } = this.props;
 
     const data = calculateSizeAndPositionData({
       cellCount,
@@ -127,7 +127,7 @@ export default class Collection extends React.PureComponent {
     scrollTop,
     width,
   }): ScrollPosition {
-    const {cellCount} = this.props;
+    const { cellCount } = this.props;
 
     if (cellIndex >= 0 && cellIndex < cellCount) {
       const cellMetadata = this._cellMetadata[cellIndex];
@@ -164,8 +164,8 @@ export default class Collection extends React.PureComponent {
     };
   }
 
-  cellRenderers({height, isScrolling, width, x, y}) {
-    const {cellGroupRenderer, cellRenderer} = this.props;
+  cellRenderers({ height, isScrolling, width, x, y }) {
+    const { cellGroupRenderer, cellRenderer } = this.props;
 
     // Store for later calls to getLastRenderedIndices()
     this._lastRenderedCellIndices = this._sectionManager.getCellIndices({
@@ -178,8 +178,8 @@ export default class Collection extends React.PureComponent {
     return cellGroupRenderer({
       cellCache: this._cellCache,
       cellRenderer,
-      cellSizeAndPositionGetter: ({index}) =>
-        this._sectionManager.getCellMetadata({index}),
+      cellSizeAndPositionGetter: ({ index }) =>
+        this._sectionManager.getCellMetadata({ index }),
       indices: this._lastRenderedCellIndices,
       isScrolling,
     });
@@ -205,7 +205,7 @@ function defaultCellGroupRenderer({
 }) {
   return indices
     .map(index => {
-      const cellMetadata = cellSizeAndPositionGetter({index});
+      const cellMetadata = cellSizeAndPositionGetter({ index });
 
       let cellRendererProps = {
         index,

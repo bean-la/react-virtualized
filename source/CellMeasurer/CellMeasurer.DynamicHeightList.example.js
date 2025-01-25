@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import CellMeasurer from './CellMeasurer';
 import CellMeasurerCache from './CellMeasurerCache';
@@ -25,7 +25,7 @@ export default class DynamicHeightList extends React.PureComponent {
   }
 
   render() {
-    const {width} = this.props;
+    const { width } = this.props;
 
     return (
       <List
@@ -41,11 +41,11 @@ export default class DynamicHeightList extends React.PureComponent {
     );
   }
 
-  _rowRenderer({index, key, parent, style}) {
-    const {getClassName, list} = this.props;
+  _rowRenderer({ index, key, parent, style }) {
+    const { getClassName, list } = this.props;
 
     const datum = list.get(index % list.size);
-    const classNames = getClassName({columnIndex: 0, rowIndex: index});
+    const classNames = getClassName({ columnIndex: 0, rowIndex: index });
 
     const imageWidth = 300;
     const imageHeight = datum.size * (1 + (index % 3));
@@ -59,7 +59,7 @@ export default class DynamicHeightList extends React.PureComponent {
         key={key}
         rowIndex={index}
         parent={parent}>
-        {({measure, registerChild}) => (
+        {({ measure, registerChild }) => (
           <div ref={registerChild} className={classNames} style={style}>
             <img
               onLoad={measure}

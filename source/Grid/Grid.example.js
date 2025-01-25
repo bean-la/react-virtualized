@@ -1,12 +1,12 @@
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
   ContentBoxParagraph,
 } from '../demo/ContentBox';
-import {LabeledInput, InputRow} from '../demo/LabeledInput';
+import { LabeledInput, InputRow } from '../demo/LabeledInput';
 import AutoSizer from '../AutoSizer';
 import Grid from './Grid';
 import clsx from 'clsx';
@@ -119,7 +119,7 @@ export default class GridExample extends React.PureComponent {
             label="List height"
             name="height"
             onChange={event =>
-              this.setState({height: parseInt(event.target.value, 10) || 1})
+              this.setState({ height: parseInt(event.target.value, 10) || 1 })
             }
             value={height}
           />
@@ -157,7 +157,7 @@ export default class GridExample extends React.PureComponent {
         </InputRow>
 
         <AutoSizer disableHeight>
-          {({width}) => (
+          {({ width }) => (
             <Grid
               cellRenderer={this._cellRenderer}
               className={styles.BodyGrid}
@@ -179,15 +179,15 @@ export default class GridExample extends React.PureComponent {
     );
   }
 
-  _cellRenderer({columnIndex, key, rowIndex, style}) {
+  _cellRenderer({ columnIndex, key, rowIndex, style }) {
     if (columnIndex === 0) {
-      return this._renderLeftSideCell({columnIndex, key, rowIndex, style});
+      return this._renderLeftSideCell({ columnIndex, key, rowIndex, style });
     } else {
-      return this._renderBodyCell({columnIndex, key, rowIndex, style});
+      return this._renderBodyCell({ columnIndex, key, rowIndex, style });
     }
   }
 
-  _getColumnWidth({index}) {
+  _getColumnWidth({ index }) {
     switch (index) {
       case 0:
         return 50;
@@ -201,7 +201,7 @@ export default class GridExample extends React.PureComponent {
   }
 
   _getDatum(index) {
-    const {list} = this.context;
+    const { list } = this.context;
 
     return list.get(index % list.size);
   }
@@ -210,7 +210,7 @@ export default class GridExample extends React.PureComponent {
     return row % 2 === 0 ? styles.evenRow : styles.oddRow;
   }
 
-  _getRowHeight({index}) {
+  _getRowHeight({ index }) {
     return this._getDatum(index).size;
   }
 
@@ -218,7 +218,7 @@ export default class GridExample extends React.PureComponent {
     return <div className={styles.noCells}>No cells</div>;
   }
 
-  _renderBodyCell({columnIndex, key, rowIndex, style}) {
+  _renderBodyCell({ columnIndex, key, rowIndex, style }) {
     const rowClass = this._getRowClassName(rowIndex);
     const datum = this._getDatum(rowIndex);
 
@@ -247,7 +247,7 @@ export default class GridExample extends React.PureComponent {
     );
   }
 
-  _renderLeftSideCell({key, rowIndex, style}) {
+  _renderLeftSideCell({ key, rowIndex, style }) {
     const datum = this._getDatum(rowIndex);
 
     const classNames = clsx(styles.cell, styles.letterCell);
@@ -276,17 +276,17 @@ export default class GridExample extends React.PureComponent {
   _onColumnCountChange(event) {
     const columnCount = parseInt(event.target.value, 10) || 0;
 
-    this.setState({columnCount});
+    this.setState({ columnCount });
   }
 
   _onRowCountChange(event) {
     const rowCount = parseInt(event.target.value, 10) || 0;
 
-    this.setState({rowCount});
+    this.setState({ rowCount });
   }
 
   _onScrollToColumnChange(event) {
-    const {columnCount} = this.state;
+    const { columnCount } = this.state;
     let scrollToColumn = Math.min(
       columnCount - 1,
       parseInt(event.target.value, 10),
@@ -296,17 +296,17 @@ export default class GridExample extends React.PureComponent {
       scrollToColumn = undefined;
     }
 
-    this.setState({scrollToColumn});
+    this.setState({ scrollToColumn });
   }
 
   _onScrollToRowChange(event) {
-    const {rowCount} = this.state;
+    const { rowCount } = this.state;
     let scrollToRow = Math.min(rowCount - 1, parseInt(event.target.value, 10));
 
     if (isNaN(scrollToRow)) {
       scrollToRow = undefined;
     }
 
-    this.setState({scrollToRow});
+    this.setState({ scrollToRow });
   }
 }

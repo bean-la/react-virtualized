@@ -1,5 +1,5 @@
 /** @flow */
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 
 /**
@@ -38,7 +38,7 @@ export default class ColumnSizer extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const {columnMaxWidth, columnMinWidth, columnCount, width} = this.props;
+    const { columnMaxWidth, columnMinWidth, columnCount, width } = this.props;
 
     if (
       columnMaxWidth !== prevProps.columnMaxWidth ||

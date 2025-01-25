@@ -1,5 +1,5 @@
 /** @flow */
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import Immutable from 'immutable';
 import {
@@ -7,7 +7,7 @@ import {
   ContentBoxHeader,
   ContentBoxParagraph,
 } from '../demo/ContentBox';
-import {LabeledInput, InputRow} from '../demo/LabeledInput';
+import { LabeledInput, InputRow } from '../demo/LabeledInput';
 import AutoSizer from '../AutoSizer';
 import Collection from './Collection';
 import styles from './Collection.example.css';
@@ -129,7 +129,7 @@ export default class CollectionExample extends React.PureComponent {
         </InputRow>
 
         <AutoSizer disableHeight>
-          {({width}) => (
+          {({ width }) => (
             <Collection
               cellCount={cellCount}
               cellRenderer={this._cellRenderer}
@@ -148,9 +148,9 @@ export default class CollectionExample extends React.PureComponent {
     );
   }
 
-  _cellRenderer({index, isScrolling, key, style}) {
-    const {list} = this.context;
-    const {showScrollingPlaceholder} = this.state;
+  _cellRenderer({ index, isScrolling, key, style }) {
+    const { list } = this.context;
+    const { showScrollingPlaceholder } = this.state;
 
     const datum = list.get(index % list.size);
 
@@ -164,9 +164,9 @@ export default class CollectionExample extends React.PureComponent {
     );
   }
 
-  _cellSizeAndPositionGetter({index}) {
-    const {list} = this.context;
-    const {columnCount} = this.state;
+  _cellSizeAndPositionGetter({ index }) {
+    const { list } = this.context;
+    const { columnCount } = this.state;
 
     const columnPosition = index % (columnCount || 1);
     const datum = list.get(index % list.size);
@@ -194,7 +194,7 @@ export default class CollectionExample extends React.PureComponent {
   _onHorizontalOverscanSizeChange(event) {
     const horizontalOverscanSize = parseInt(event.target.value, 10) || 0;
 
-    this.setState({horizontalOverscanSize});
+    this.setState({ horizontalOverscanSize });
   }
 
   _noContentRenderer() {
@@ -215,11 +215,11 @@ export default class CollectionExample extends React.PureComponent {
   _onHeightChange(event) {
     const height = parseInt(event.target.value, 10) || 0;
 
-    this.setState({height});
+    this.setState({ height });
   }
 
   _onScrollToCellChange(event) {
-    const {cellCount} = this.state;
+    const { cellCount } = this.state;
 
     let scrollToCell = Math.min(
       cellCount - 1,
@@ -230,12 +230,12 @@ export default class CollectionExample extends React.PureComponent {
       scrollToCell = undefined;
     }
 
-    this.setState({scrollToCell});
+    this.setState({ scrollToCell });
   }
 
   _onVerticalOverscanSizeChange(event) {
     const verticalOverscanSize = parseInt(event.target.value, 10) || 0;
 
-    this.setState({verticalOverscanSize});
+    this.setState({ verticalOverscanSize });
   }
 }
